@@ -1,9 +1,19 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from 'react'
+import { render, RenderResult, screen } from '@testing-library/react'
+import { App } from './App'
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe('App', () => {
+	let comp: RenderResult
+
+	beforeEach(() => {
+		comp = render(<App />)
+	})
+
+	it('renders header', () => {
+		expect(comp.getByText(/Pokedex Nova/)).toBeInTheDocument()
+	})
+
+	it('matches snapshot', () => {
+		expect(comp.asFragment()).toMatchSnapshot()
+	})
+})
