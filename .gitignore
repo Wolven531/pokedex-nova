@@ -102,3 +102,22 @@ dist
 
 # TernJS port file
 .tern-port
+
+# dependencies
+.pnp
+.pnp.js
+
+# testing
+
+# production
+build/
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# prefer yarn lockfile
+package-lock.json
