@@ -6,28 +6,38 @@ import { MAX_NUM_POKEMON } from '../constants'
 export const App: FC = () => {
 	const api = new MainClient()
 
-	const [isCountLoaded, setIsCountLoaded] = useState(false)
+	const [isLoaded, setIsCountLoaded] = useState(false)
 	const [pokemon, setPokemon] = useState<NamedAPIResource[]>([])
 	const [totalCount, setTotalCount] = useState(0)
 
-	const fetchPokemonCount = useCallback(async () => {
-		if (isCountLoaded) {
-			return Promise.resolve()
-		}
-
-		return api.pokemon
-			.listPokemons(undefined, MAX_NUM_POKEMON)
-			.then((result) => {
-				setTotalCount(result.count)
-				setPokemon(result.results as NamedAPIResource[])
-			})
-			.catch((err) => {
-				console.error(`Problem fetching pokemon count - ${err}`)
-			})
-			.finally(() => {
-				setIsCountLoaded(true)
-			})
-	}, [api.pokemon, isCountLoaded])
+	/**
+	 * This method uses the PokeAPI client to
+	 *   - retrieve all pokemon entries
+	 *   - update `totalCount` for rendering
+	 *   - sets the component to loaded when successful
+	 *
+	 * If aready loaded, this method simply resolves
+	 */
+	const fetchPokemonCount = useCallback(
+		(): Promise<void> =>
+			isLoaded
+				? Promise.resolve()
+				: api.pokemon
+						.listPokemons(undefined, MAX_NUM_POKEMON)
+						.then((result) => {
+							setTotalCount(result.count)
+							setPokemon(result.results as NamedAPIResource[])
+						})
+						.catch((err) => {
+							console.error(
+								`Problem fetching pokemon count - ${err}`,
+							)
+						})
+						.finally(() => {
+							setIsCountLoaded(true)
+						}),
+		[isLoaded],
+	)
 
 	useEffect(() => {
 		fetchPokemonCount()
@@ -38,11 +48,11 @@ export const App: FC = () => {
 			<header>
 				<h2>Pokedex Nova</h2>
 			</header>
-			{isCountLoaded && (
+			{isLoaded && (
 				<section>
 					<div>Total count - {totalCount}</div>
 					{pokemon.map(({ name, url }) => (
-						<div key={url}>
+						<div key={url} className="poke-container">
 							<a href={url}>{name}</a>
 						</div>
 					))}

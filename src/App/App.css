@@ -50,3 +50,7 @@ section {
 	padding: 0;
 	row-gap: var(--spacing-gutter);
 }
+
+.poke-container > a {
+	text-transform: capitalize;
+}
