@@ -1,6 +1,7 @@
 import React, { FC, useCallback, useEffect, useState } from 'react'
 import { MainClient, NamedAPIResource } from 'pokenode-ts'
 import './App.css'
+import { MAX_NUM_POKEMON } from '../constants'
 
 export const App: FC = () => {
 	const api = new MainClient()
@@ -15,7 +16,7 @@ export const App: FC = () => {
 		}
 
 		return api.pokemon
-			.listPokemons(undefined, 100 * 20)
+			.listPokemons(undefined, MAX_NUM_POKEMON)
 			.then((result) => {
 				setTotalCount(result.count)
 				setPokemon(result.results as NamedAPIResource[])
