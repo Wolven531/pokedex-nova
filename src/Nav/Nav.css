@@ -1,0 +1,24 @@
+nav {
+	display: flex;
+	flex-direction: column;
+	grid-column: 2;
+	grid-row: 2;
+	justify-content: center;
+}
+
+nav ul {
+	align-content: stretch;
+	align-items: center;
+	align-self: stretch;
+	display: flex;
+	justify-content: space-evenly;
+	list-style-type: none;
+	margin-block-start: 0;
+	margin-block-end: 0;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+	padding-inline-start: 0;
+}
+nav ul li {
+	display: inline-block;
+}
