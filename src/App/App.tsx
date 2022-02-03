@@ -19,7 +19,7 @@ export const App: FC = () => {
 	 *   - update `totalCount` for rendering
 	 *   - sets the component to loaded when successful
 	 *
-	 * If aready loaded, this method simply resolves
+	 * If already loaded, this method simply resolves
 	 */
 	const fetchPokemonCount = useCallback(
 		(): Promise<void> =>
