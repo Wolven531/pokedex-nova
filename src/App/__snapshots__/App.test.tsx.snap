@@ -10,6 +10,29 @@ exports[`App matches snapshot 1`] = `
         Pokedex Nova
       </h2>
     </header>
+    <nav>
+      <ul>
+        <li>
+          <a
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="/other"
+          >
+            Other
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <section>
+      <div>
+        Loading...
+      </div>
+    </section>
     <footer>
       © Anthony Williams 2022
     </footer>

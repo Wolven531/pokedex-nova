@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, RenderResult, screen } from '@testing-library/react'
+import { render, RenderResult } from '@testing-library/react'
 import { App } from './App'
 
 describe('App', () => {
