@@ -9,7 +9,7 @@ footer {
 	border-radius: 10px;
 	display: flex;
 	grid-column: 2;
-	grid-row: 3;
+	grid-row: 4;
 	justify-content: center;
 	text-align: center;
 }
@@ -32,7 +32,7 @@ header h2 {
 
 section {
 	grid-column: 2;
-	grid-row: 2;
+	grid-row: 3;
 	text-align: center;
 }
 
@@ -47,10 +47,12 @@ section {
 		var(--spacing-page-pad);
 	grid-template-rows:
 		var(--spacing-page-pad)
+		var(--spacing-page-pad)
 		1fr
 		var(--spacing-page-pad)
 		var(--spacing-page-pad);
 	margin: 0;
+	min-height: 400px;
 	padding: 0;
 	row-gap: var(--spacing-gutter);
 }

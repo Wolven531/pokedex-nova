@@ -3,6 +3,7 @@ import { MainClient } from 'pokenode-ts'
 // import { MainClient, NamedAPIResource } from 'pokenode-ts'
 import { MAX_NUM_POKEMON, NUM_FORMATTER } from '../constants'
 import './App.css'
+import { Nav } from '../Nav'
 
 export const App: FC = () => {
 	const api = new MainClient()
@@ -49,20 +50,19 @@ export const App: FC = () => {
 			<header>
 				<h2>Pokedex Nova</h2>
 			</header>
-			{isLoaded && (
-				<section>
+			<Nav />
+			<section>
+				{isLoaded && (
 					<div>
 						Total pokemon count - {NUM_FORMATTER.format(totalCount)}
 					</div>
-					{/*
-					{pokemon.map(({ name, url }) => (
-						<div key={url} className="poke-container">
-							<a href={url}>{name}</a>
-						</div>
-					))}
-					*/}
-				</section>
-			)}
+					// {pokemon.map(({ name, url }) => (
+					// 	<div key={url} className="poke-container">
+					// 		<a href={url}>{name}</a>
+					// 	</div>
+					// ))}
+				)}
+			</section>
 			<footer>&copy; Anthony Williams 2022</footer>
 		</article>
 	)
