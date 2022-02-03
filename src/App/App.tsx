@@ -1,13 +1,14 @@
 import React, { FC, useCallback, useEffect, useState } from 'react'
-import { MainClient, NamedAPIResource } from 'pokenode-ts'
+import { MainClient } from 'pokenode-ts'
+// import { MainClient, NamedAPIResource } from 'pokenode-ts'
+import { MAX_NUM_POKEMON, NUM_FORMATTER } from '../constants'
 import './App.css'
-import { MAX_NUM_POKEMON } from '../constants'
 
 export const App: FC = () => {
 	const api = new MainClient()
 
 	const [isLoaded, setIsCountLoaded] = useState(false)
-	const [pokemon, setPokemon] = useState<NamedAPIResource[]>([])
+	// const [pokemon, setPokemon] = useState<NamedAPIResource[]>([])
 	const [totalCount, setTotalCount] = useState(0)
 
 	/**
@@ -26,7 +27,7 @@ export const App: FC = () => {
 						.listPokemons(undefined, MAX_NUM_POKEMON)
 						.then((result) => {
 							setTotalCount(result.count)
-							setPokemon(result.results as NamedAPIResource[])
+							// setPokemon(result.results as NamedAPIResource[])
 						})
 						.catch((err) => {
 							console.error(
@@ -50,12 +51,16 @@ export const App: FC = () => {
 			</header>
 			{isLoaded && (
 				<section>
-					<div>Total count - {totalCount}</div>
+					<div>
+						Total pokemon count - {NUM_FORMATTER.format(totalCount)}
+					</div>
+					{/*
 					{pokemon.map(({ name, url }) => (
 						<div key={url} className="poke-container">
 							<a href={url}>{name}</a>
 						</div>
 					))}
+					*/}
 				</section>
 			)}
 			<footer>&copy; Anthony Williams 2022</footer>
