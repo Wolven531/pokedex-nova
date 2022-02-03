@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useEffect, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { MainClient } from 'pokenode-ts'
 // import { MainClient, NamedAPIResource } from 'pokenode-ts'
 import { MAX_NUM_POKEMON, NUM_FORMATTER } from '../constants'
@@ -50,19 +51,46 @@ export const App: FC = () => {
 			<header>
 				<h2>Pokedex Nova</h2>
 			</header>
-			<Nav />
-			<section>
-				{isLoaded && (
-					<div>
-						Total pokemon count - {NUM_FORMATTER.format(totalCount)}
-					</div>
-					// {pokemon.map(({ name, url }) => (
-					// 	<div key={url} className="poke-container">
-					// 		<a href={url}>{name}</a>
-					// 	</div>
-					// ))}
-				)}
-			</section>
+			<BrowserRouter>
+				<Nav />
+				<section>
+					<Routes>
+						<Route path="/">
+							{/* Home below */}
+							<Route
+								element={
+									<>
+										{!isLoaded && <div>Loading...</div>}
+										{isLoaded && (
+											<div>
+												Total pokemon count -{' '}
+												{NUM_FORMATTER.format(
+													totalCount,
+												)}
+											</div>
+											// {pokemon.map(({ name, url }) => (
+											// 	<div key={url} className="poke-container">
+											// 		<a href={url}>{name}</a>
+											// 	</div>
+											// ))}
+										)}
+									</>
+								}
+								index
+							></Route>
+							<Route
+								element={<div>Other</div>}
+								path="other"
+							></Route>
+							{/* Not Found below */}
+							<Route
+								element={<div>Not Found</div>}
+								path="*"
+							></Route>
+						</Route>
+					</Routes>
+				</section>
+			</BrowserRouter>
 			<footer>&copy; Anthony Williams 2022</footer>
 		</article>
 	)
